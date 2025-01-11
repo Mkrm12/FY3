@@ -1,8 +1,13 @@
-const express = require('express');
-const path = require('path');
+// Import the modules we need
+var express = require('express');
+var ejs = require('ejs');
+var bodyParser = require('body-parser');
+var path = require('path');  // <-- Add this line
 
+// Create the express application object
 const app = express();
-const PORT = 3000;
+const port = 8000;
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files from the "iPortfolio" folder, including assets (css, js, etc.)
 app.use('/portfolio', express.static(path.join(__dirname, 'iPortfolio')));
@@ -13,6 +18,6 @@ app.get('/portfolio', (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
